@@ -1,18 +1,25 @@
 package pho.ma.entities;
 
-import java.util.List;
-
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
+import java.util.List;
+
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
+@DiscriminatorValue("CLI")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Client extends Personne {
 
-public class Client  extends Personne {
-	
-	  @OneToMany(mappedBy = "client")
-	    private List<Reservation> reservations;
+    private String telephone;
+    private Date date_Res;
 
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations;
 }
