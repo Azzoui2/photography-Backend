@@ -2,6 +2,7 @@ package pho.ma.entities;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -17,14 +18,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Photographe extends Personne {
-
     private String adresse;
     private Boolean disponibilite;
     private Date date_Embauche;
-
-    @OneToMany(mappedBy = "photographe")
-    private List<Reservation> reservations;
-
     @ManyToMany
+//    @JoinTable(
+//        name = "photographe_specialites")
+//    
     private List<Specialites> specialites;
+   
+ 
 }

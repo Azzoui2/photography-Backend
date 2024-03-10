@@ -16,10 +16,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client extends Personne {
-
-    private String telephone;
-    private Date date_Res;
-
+     String telephone;
+     Date date_Res;
     @OneToMany(mappedBy = "client")
-    private List<Reservation> reservations;
+     List<Reservation> reservation;
+   
 }

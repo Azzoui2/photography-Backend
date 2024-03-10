@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import pho.ma.entities.Personne;
+import pho.ma.entities.Client;
+import pho.ma.entities.Admin;
+import pho.ma.entities.Photographe;
+import pho.ma.entities.Specialites;
 import pho.ma.repositories.PersonneRepository;
 import pho.ma.repositories.ReservationRepository;
 import pho.ma.repositories.SpecialitesRepository;
@@ -25,14 +29,25 @@ public class PhotographyBackendApplication {
      ReservationRepository reservaRepository,
      SpecialitesRepository specialitesRepository
  ) {
+	 
+//	 return args -> {
+//         Stream.of("Hassan", "Imane", "Mohamed").forEach(name -> {
+//             Specialites specialites = new Specialites();
+//             specialites.setNom(name);
+//             specialitesRepository.save(specialites);
+//           
+//         });
+//     };
+	 
      return args -> {
          Stream.of("Hassan", "Imane", "Mohamed").forEach(name -> {
              Personne personne = new Personne();
              personne.setNom(name);
              personne.setEmail(name + "@gamil.com");
+             
              personne.setPrenom("EL" + name);
-             personne.setMotDePasse(name);
-           //  personne.setDtype("Personne"); // Spécifiez la valeur du discriminant
+             personne.setMot_de_passe(name);
+           // personne.setDtype("Personne"); // Spécifiez la valeur du discriminant
              personneRepository.save(personne);
          });
      };

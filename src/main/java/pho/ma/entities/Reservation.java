@@ -2,7 +2,9 @@ package pho.ma.entities;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
+ import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,19 +24,25 @@ public class Reservation {
     private Date date;
 
     @ManyToOne
-    private Client client;
-
+    private Client client ;
+    
     @ManyToOne
-    private Photographe photographe;
+    private Photographe photographe   ;
+    
+    @ManyToOne
+    private Admin admin   ;
 
     private boolean finie;
     
-    private Status status;
-public enum Status {
-    EN_ATTENTE,
-    CONFIRMEE,
-    ANNULEE
-}
+    @Enumerated(EnumType.STRING)
+    private Status type; 
+  
+
+    public enum Status {
+        EN_ATTENTE,
+        CONFIRMEE,
+        ANNULEE
+    }
 
 }
 
