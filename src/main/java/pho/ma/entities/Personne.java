@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Personne implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
     private String email;
     private String mot_de_passe;
     private String nom;

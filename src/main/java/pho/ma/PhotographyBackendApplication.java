@@ -1,5 +1,7 @@
 package pho.ma;
 
+import java.util.Date;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
@@ -7,10 +9,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+ 
 import pho.ma.entities.Personne;
 import pho.ma.entities.Client;
 import pho.ma.entities.Admin;
 import pho.ma.entities.Photographe;
+import pho.ma.entities.Reservation;
+import pho.ma.entities.Reservation.Status;
 import pho.ma.entities.Specialites;
 import pho.ma.repositories.PersonneRepository;
 import pho.ma.repositories.ReservationRepository;
@@ -26,7 +31,7 @@ public class PhotographyBackendApplication {
  @Bean
  CommandLineRunner start(
      PersonneRepository personneRepository,
-     ReservationRepository reservaRepository,
+     ReservationRepository reservationRepository,
      SpecialitesRepository specialitesRepository
  ) {
 	 
@@ -44,12 +49,28 @@ public class PhotographyBackendApplication {
              Personne personne = new Personne();
              personne.setNom(name);
              personne.setEmail(name + "@gamil.com");
-             
+             personne.setId(UUID.randomUUID().toString());
              personne.setPrenom("EL" + name);
              personne.setMot_de_passe(name);
            // personne.setDtype("Personne"); // Spécifiez la valeur du discriminant
              personneRepository.save(personne);
          });
+         
+         reservationRepository.findAll().forEach(Client->{
+     		Reservation reservation =new Reservation();
+     		//casting Id String
+     		reservation.setDate(new Date());
+     		reservation.setFinie(false);
+     		reservation.setType(Status.ANNULEE);
+     	 
+     		reservationRepository.save(reservation);
+     		
+      
+     		 
+     	 			
+     			
+     		});
      };
+     
  }
 }
