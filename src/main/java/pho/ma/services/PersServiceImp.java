@@ -11,6 +11,7 @@ import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
 import pho.ma.entities.Personne;
 import pho.ma.entities.Reservation;
+import pho.ma.entities.Specialites;
 import pho.ma.repositories.PersonneRepository;
 import pho.ma.repositories.ReservationRepository;
 import pho.ma.repositories.SpecialitesRepository;
@@ -36,6 +37,13 @@ public class PersServiceImp implements PersService {
 		
 		return savePersonne;
 	}
+	@Override
+	public Reservation saveReservation(Reservation reservation) {
+		log.info("Sauvgarder nouvelle clinet");
+		Reservation saveReservation = reservationRepository.save(reservation);
+		
+		return saveReservation;
+	}
 
 
 	 
@@ -43,6 +51,17 @@ public class PersServiceImp implements PersService {
 	public List<Personne> listPersonnes() {
 		// TODO Auto-generated method stub
 		return personneRepository.findAll();
+	}
+	@Override
+	public List<Reservation> ListReservation() {
+		// TODO Auto-generated method stub
+		return reservationRepository.findAll();
+	}
+	
+	@Override
+	public List<Specialites> ListSpecialites() {
+		// TODO Auto-generated method stub
+		return specialitesRepository.findAll();
 	}
 
 	@Override
@@ -56,5 +75,9 @@ public class PersServiceImp implements PersService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
 
 }

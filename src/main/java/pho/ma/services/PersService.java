@@ -6,6 +6,7 @@ import java.util.List;
 
 import pho.ma.entities.Personne;
 import pho.ma.entities.Reservation;
+import pho.ma.entities.Specialites;
 import pho.ma.repositories.ReservationRepository;
  public interface PersService {
 	 Personne savePersonne(Personne personne);
@@ -13,5 +14,12 @@ import pho.ma.repositories.ReservationRepository;
      
      Reservation savareservation();
      Reservation getReservation();
+     
+	List<Reservation> ListReservation();
+	Reservation saveReservation(Reservation reservation);
+	
+	List<Specialites> ListSpecialites();
+//	List<Specialites> listSpecialites();
+	 
      
 }

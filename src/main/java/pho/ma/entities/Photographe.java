@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @DiscriminatorValue("PHO")
 @Data
@@ -21,6 +23,7 @@ public class Photographe extends Personne {
     private String adresse;
     private Boolean disponibilite;
     private Date date_Embauche;
+    @JsonBackReference
     @ManyToMany
 //    @JoinTable(
 //        name = "photographe_specialites")

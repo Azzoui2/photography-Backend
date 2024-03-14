@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @DiscriminatorValue("CLI")
 @Data
@@ -18,6 +20,7 @@ import java.util.List;
 public class Client extends Personne {
      String telephone;
      Date date_Res;
+     @JsonManagedReference
     @OneToMany(mappedBy = "client")
      List<Reservation> reservation;
    
