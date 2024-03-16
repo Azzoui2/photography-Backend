@@ -1,14 +1,15 @@
 package pho.ma;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
  
 import pho.ma.entities.Personne;
 import pho.ma.entities.Client;
@@ -39,34 +40,53 @@ public class PhotographyBackendApplication {
     	 return args -> {
              // Création et enregistrement des spécialités
              Stream.of("Hassan", "Imane", "Mohamed").forEach(name -> {
-                 Specialites specialites = new Specialites();
-                 specialites.setNom(name);
-                 specialitesRepository.save(specialites);
+            	 
+            	 
+                
+               
+                 
+                 // Création et enregistrement des entités Client, Photographe et Admin
+                 
+                 Client client = new Client();
+                 client.setNom("Client1");
+                 client.setDate_Res(new Date());
+                 client.setEmail(name+"@gamil.com");
+                 client.setPrenom("EL"+name);
+                 client.setReservations(null);
+                 client.setTelephone("0689892928");
+                 personneRepository.save(client);
+                 
+                 //Specialites
+                 
+               
+
+              
+
+                 Admin admin = new Admin();
+                 admin.setNom("Admin1");
+                 personneRepository.save(admin);
+                 
+                 // Création et enregistrement de la réservation
+                 Reservation reservation = new Reservation();
+                 reservation.setDate(new Date());
+                 reservation.setClient(client);
+                
+                 reservation.setAdmin(admin);
+                 reservation.setFinie(false);
+                 reservation.setType(Reservation.Status.EN_ATTENTE);
+                 reservationRepository.save(reservation);
+                 
+                 
              });
 
-             // Création et enregistrement des entités Client, Photographe et Admin
-             Client client = new Client();
-             client.setNom("Client1");
-             personneRepository.save(client);
+            
 
-             Photographe photographe = new Photographe();
-             photographe.setNom("Photographe1");
-             personneRepository.save(photographe);
 
-             Admin admin = new Admin();
-             admin.setNom("Admin1");
-             personneRepository.save(admin);
-
-             // Création et enregistrement de la réservation
-             Reservation reservation = new Reservation();
-             reservation.setDate(new Date());
-             reservation.setClient(client);
-             reservation.setPhotographe(photographe);
-             reservation.setAdmin(admin);
-             reservation.setFinie(false);
-             reservation.setType(Reservation.Status.EN_ATTENTE);
-             reservationRepository.save(reservation);
+           
          };
+         
+         
+         
      }
     	
     	
