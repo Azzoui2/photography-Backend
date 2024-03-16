@@ -31,7 +31,7 @@ public class Personne implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String type;
     private String email;
     private String mot_de_passe;
     private String nom;
@@ -50,4 +50,6 @@ public class Personne implements Serializable {
 //    //photographer
 //    @ManyToMany
 //    private List<Specialites> specialites;
+
+ 
 }

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client extends Personne {
+	
      String telephone;
      Date date_Res;
      @JsonManagedReference

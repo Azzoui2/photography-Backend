@@ -1,5 +1,6 @@
 package pho.ma.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ch.qos.logback.classic.Logger;
  import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import pho.ma.entities.Client;
 import pho.ma.entities.Personne;
 import pho.ma.entities.Reservation;
 import pho.ma.entities.Specialites;
@@ -51,7 +53,27 @@ public class PersServiceImp implements PersService {
 	public List<Personne> listPersonnes() {
 		// TODO Auto-generated method stub
 		return personneRepository.findAll();
+		
 	}
+	  
+	
+	 @Override
+	 public List<Personne> listClient() {
+		    List<Personne> clients = new ArrayList<>();
+
+		    List<Personne> toutesLesPersonnes = personneRepository.findAll();
+
+		    for (Personne personne : toutesLesPersonnes) {
+		        if (personne instanceof Client) {
+		            clients.add(personne);
+		        }
+		    }
+
+		    return clients;
+		}
+
+
+
 	@Override
 	public List<Reservation> ListReservation() {
 		// TODO Auto-generated method stub
@@ -75,6 +97,7 @@ public class PersServiceImp implements PersService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 

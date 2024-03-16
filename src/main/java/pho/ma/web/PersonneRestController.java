@@ -23,7 +23,7 @@ public class PersonneRestController {
 
 	 @GetMapping("/personnes")
 	    public List<Personne> personnes(){
-	        return persService.listPersonnes();
+	        return persService.listClient();
 	    }
 	 
 	 @GetMapping("/reservation")

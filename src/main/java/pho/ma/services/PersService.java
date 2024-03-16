@@ -4,6 +4,7 @@ package pho.ma.services;
 
 import java.util.List;
 
+import pho.ma.entities.Client;
 import pho.ma.entities.Personne;
 import pho.ma.entities.Reservation;
 import pho.ma.entities.Specialites;
@@ -20,6 +21,7 @@ import pho.ma.repositories.ReservationRepository;
 	
 	List<Specialites> ListSpecialites();
 //	List<Specialites> listSpecialites();
+	List<Personne> listClient();
 	 
      
 }

@@ -48,7 +48,7 @@ public class PhotographyBackendApplication {
                  // Création et enregistrement des entités Client, Photographe et Admin
                  
                  Client client = new Client();
-                 client.setNom("Client1");
+                 client.setNom(name);
                  client.setDate_Res(new Date());
                  client.setEmail(name+"@gamil.com");
                  client.setPrenom("EL"+name);
@@ -64,6 +64,8 @@ public class PhotographyBackendApplication {
 
                  Admin admin = new Admin();
                  admin.setNom("Admin1");
+                 admin.setRole("Role1");
+                 admin.setRole("lle");
                  personneRepository.save(admin);
                  
                  // Création et enregistrement de la réservation
