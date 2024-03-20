@@ -2,15 +2,11 @@ package pho.ma.entities;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,33 +24,29 @@ public class Reservation {
     
     @ManyToOne
     @JoinColumn(name = "personne_id")
-    @JsonBackReference // Côté enfant de la relation
+    @JsonIgnore
     private Personne personne;
     
-    @JsonBackReference
+//    @JsonIgnore
+//    @ManyToOne
+//    private Client client;
+
+    @JsonIgnore
     @ManyToOne
-    private Client client ;
-    @JsonBackReference
+    private Photographe photographe;
+
+    @JsonIgnore
     @ManyToOne
-    private Photographe photographe   ;
-    @JsonBackReference
-    @ManyToOne
-    private Admin admin   ;
+    private Admin admin;
 
     private boolean finie;
     
     @Enumerated(EnumType.STRING)
     private Status type; 
   
-
     public enum Status {
         EN_ATTENTE,
         CONFIRMEE,
         ANNULEE
     }
-
 }
-
-
-
-	

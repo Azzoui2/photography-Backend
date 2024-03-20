@@ -52,9 +52,9 @@ public class PhotographyBackendApplication {
                  client.setDate_Res(new Date());
                  client.setEmail(name+"@gamil.com");
                  client.setPrenom("EL"+name);
-                 client.setReservations(null);
+              //   client.setReservations(null);
                  client.setTelephone("0689892928");
-                 personneRepository.save(client);
+              //   personneRepository.save(client);
                  
                  //Specialites
                  
@@ -66,17 +66,17 @@ public class PhotographyBackendApplication {
                  admin.setNom("Admin1");
                  admin.setRole("Role1");
                  admin.setRole("lle");
-                 personneRepository.save(admin);
+                // personneRepository.save(admin);
                  
                  // Création et enregistrement de la réservation
                  Reservation reservation = new Reservation();
                  reservation.setDate(new Date());
-                 reservation.setClient(client);
+               //  reservation.setClient(client);
                 
                  reservation.setAdmin(admin);
                  reservation.setFinie(false);
                  reservation.setType(Reservation.Status.EN_ATTENTE);
-                 reservationRepository.save(reservation);
+               //  reservationRepository.save(reservation);
                  
                  
              });

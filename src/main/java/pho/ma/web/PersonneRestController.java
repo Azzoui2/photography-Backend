@@ -4,13 +4,17 @@ package pho.ma.web;
 import java.util.List;
  import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import pho.ma.entities.Client;
 import pho.ma.entities.Personne;
 import pho.ma.entities.Reservation;
 import pho.ma.entities.Specialites;
+import pho.ma.repositories.PersonneRepository;
 import pho.ma.services.PersService;
 import pho.ma.services.PersonneService;
 
@@ -19,6 +23,7 @@ import pho.ma.services.PersonneService;
 @Slf4j
 @CrossOrigin("*") // // Autorise toutes les origines
 public class PersonneRestController {
+	private PersonneRepository personneRepository;
     private PersService persService;
 
 	 @GetMapping("/personnes")
@@ -35,5 +40,19 @@ public class PersonneRestController {
 	        return persService.ListSpecialites();
 	    }
 	 
+	 @PostMapping("/personnes")
+	    public Personne saveClient(@RequestBody Client client) {
+	        // Assurez-vous que les méthodes de service appropriées sont appelées pour traiter le client
+	     System.out.println("final");   
+		 return persService.saveClient(client);
+	    }
+	 
+	 @PostMapping("/reservation")
+	    public Reservation saveReservation(@RequestBody Reservation reservation) {
+	        // Assurez-vous que les méthodes de service appropriées sont appelées pour traiter le client
+	     System.out.println("final");   
+		 return persService.saveReservation(reservation);
+	    }
+
 	 
 }
