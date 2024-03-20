@@ -37,9 +37,9 @@ public class Personne implements Serializable {
     private String nom;
     private String prenom;
     
-    @OneToMany(mappedBy = "personne")
-    @JsonManagedReference // Côté propriétaire de la relation
-    private List<Reservation> reservations = new ArrayList<>();
+//    @OneToMany(mappedBy = "personne")
+//    @JsonManagedReference // Côté propriétaire de la relation
+//    private List<Reservation> reservations = new ArrayList<>();
 
     @Column(insertable = false, updatable = false) // Ajoutez cette annotation
     private String role;

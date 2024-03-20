@@ -40,8 +40,15 @@ public class PersServiceImp implements PersService {
 		return savePersonne;
 	}
 	@Override
-	public Reservation saveReservation(Reservation reservation) {
+	public Client saveClient(Client client) {
 		log.info("Sauvgarder nouvelle clinet");
+		Client savePersonne = personneRepository.save(client);
+		
+		return  savePersonne;
+	}
+	@Override
+	public Reservation saveReservation(Reservation reservation) {
+		log.info("Sauvgarder nouvelle reservation");
 		Reservation saveReservation = reservationRepository.save(reservation);
 		
 		return saveReservation;
@@ -86,17 +93,15 @@ public class PersServiceImp implements PersService {
 		return specialitesRepository.findAll();
 	}
 
-	@Override
-	public Reservation savareservation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+ 
 
 	@Override
 	public Reservation getReservation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+ 
+
 
 
 

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.Data;
 import pho.ma.entities.Client;
 import pho.ma.entities.Personne;
 import pho.ma.entities.Photographe;
@@ -12,7 +13,7 @@ import pho.ma.repositories.PersonneRepository;
 
 @Service
 @Transactional
-
+@Data 
 public class PersonneService {
 	@Autowired
     private PersonneRepository personneRepository;

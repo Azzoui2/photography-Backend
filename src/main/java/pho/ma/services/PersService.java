@@ -13,7 +13,7 @@ import pho.ma.repositories.ReservationRepository;
 	 Personne savePersonne(Personne personne);
      List<Personne> listPersonnes();
      
-     Reservation savareservation();
+    
      Reservation getReservation();
      
 	List<Reservation> ListReservation();
@@ -22,6 +22,7 @@ import pho.ma.repositories.ReservationRepository;
 	List<Specialites> ListSpecialites();
 //	List<Specialites> listSpecialites();
 	List<Personne> listClient();
+	Personne saveClient(Client client);
 	 
      
 }
