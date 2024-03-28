@@ -1,5 +1,6 @@
 package pho.ma.entities;
 
+import java.sql.Time;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,15 +22,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    
+    private Time heure;
+    private String type_photo;
     @ManyToOne
     @JoinColumn(name = "personne_id")
     @JsonIgnore
     private Personne personne;
-    
-//    @JsonIgnore
-//    @ManyToOne
-//    private Client client;
+
+    // @JsonIgnore
+    // @ManyToOne
+    // private Client client;
 
     @JsonIgnore
     @ManyToOne
@@ -40,10 +42,10 @@ public class Reservation {
     private Admin admin;
 
     private boolean finie;
-    
+
     @Enumerated(EnumType.STRING)
-    private Status type; 
-  
+    private Status type;
+
     public enum Status {
         EN_ATTENTE,
         CONFIRMEE,

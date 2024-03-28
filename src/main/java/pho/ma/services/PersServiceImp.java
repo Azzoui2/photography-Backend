@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ch.qos.logback.classic.Logger;
- import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pho.ma.entities.Client;
 import pho.ma.entities.Personne;
@@ -23,89 +23,82 @@ import pho.ma.repositories.SpecialitesRepository;
 @AllArgsConstructor
 @Slf4j
 public class PersServiceImp implements PersService {
-	
+
 	private PersonneRepository personneRepository;
 
 	private ReservationRepository reservationRepository;
-	
-	private SpecialitesRepository specialitesRepository ;
-	
-//	Logger log= LoggerFactory.getLogger(this.getClass().getName());
+
+	private SpecialitesRepository specialitesRepository;
+
+	// Logger log= LoggerFactory.getLogger(this.getClass().getName());
 
 	@Override
 	public Personne savePersonne(Personne personne) {
 		log.info("Sauvgarder nouvelle clinet");
 		Personne savePersonne = personneRepository.save(personne);
-		
+
 		return savePersonne;
 	}
+
 	@Override
 	public Client saveClient(Client client) {
 		log.info("Sauvgarder nouvelle clinet");
 		Client savePersonne = personneRepository.save(client);
-		
-		return  savePersonne;
+
+		return savePersonne;
 	}
+
 	@Override
 	public Reservation saveReservation(Reservation reservation) {
 		log.info("Sauvgarder nouvelle reservation");
 		Reservation saveReservation = reservationRepository.save(reservation);
-		
+
 		return saveReservation;
 	}
 
-
-	 
 	@Override
 	public List<Personne> listPersonnes() {
 		// TODO Auto-generated method stub
 		return personneRepository.findAll();
-		
+
 	}
-	  
-	
-	 @Override
-	 public List<Personne> listClient() {
-		    List<Personne> clients = new ArrayList<>();
 
-		    List<Personne> toutesLesPersonnes = personneRepository.findAll();
+	@Override
+	public List<Personne> listClient() {
+		List<Personne> clients = new ArrayList<>();
 
-		    for (Personne personne : toutesLesPersonnes) {
-		        if (personne instanceof Client) {
-		            clients.add(personne);
-		        }
-		    }
+		List<Personne> toutesLesPersonnes = personneRepository.findAll();
 
-		    return clients;
+		for (Personne personne : toutesLesPersonnes) {
+			if (personne instanceof Client) {
+				clients.add(personne);
+			}
 		}
 
-
+		return clients;
+	}
 
 	@Override
 	public List<Reservation> ListReservation() {
 		// TODO Auto-generated method stub
 		return reservationRepository.findAll();
 	}
-	
+
 	@Override
 	public List<Specialites> ListSpecialites() {
 		// TODO Auto-generated method stub
 		return specialitesRepository.findAll();
 	}
 
- 
-
 	@Override
 	public Reservation getReservation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
- 
 
-
-
-
-
-
+	@Override
+	public void deleteReservation(Long id) {
+		reservationRepository.deleteById(id);
+	}
 
 }
