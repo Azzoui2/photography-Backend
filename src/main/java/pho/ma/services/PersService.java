@@ -28,4 +28,8 @@ public interface PersService {
 
 	void deleteReservation(Long id);
 
+	Reservation findById(Long id);
+
+	List<Personne> personnesRecherch(String keyword);
+
 }

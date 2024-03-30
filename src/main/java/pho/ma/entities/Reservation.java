@@ -21,8 +21,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date date;
-    private Time heure;
+    private String date;
+    private String heure;
+    private String adresse;
     private String type_photo;
     @ManyToOne
     @JoinColumn(name = "personne_id")

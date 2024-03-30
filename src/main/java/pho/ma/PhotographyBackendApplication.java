@@ -16,7 +16,6 @@ import pho.ma.entities.Client;
 import pho.ma.entities.Admin;
 import pho.ma.entities.Photographe;
 import pho.ma.entities.Reservation;
-import pho.ma.entities.Reservation.Status;
 import pho.ma.entities.Specialites;
 import pho.ma.repositories.PersonneRepository;
 import pho.ma.repositories.ReservationRepository;
@@ -68,12 +67,12 @@ public class PhotographyBackendApplication {
 
         // Création et enregistrement de la réservation
         Reservation reservation = new Reservation();
-        reservation.setDate(new Date());
+        // reservation.setDate(new Date());
         // reservation.setClient(client);
 
         reservation.setAdmin(admin);
         reservation.setFinie(false);
-        reservation.setType(Reservation.Status.EN_ATTENTE);
+        // reservation.setType(Reservation.Status.EN_ATTENTE);
         // reservationRepository.save(reservation);
 
       });

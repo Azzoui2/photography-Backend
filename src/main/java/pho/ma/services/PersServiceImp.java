@@ -2,6 +2,7 @@ package pho.ma.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -99,6 +100,37 @@ public class PersServiceImp implements PersService {
 	@Override
 	public void deleteReservation(Long id) {
 		reservationRepository.deleteById(id);
+	}
+
+	@Override
+	public Reservation findById(Long id) {
+		// TODO Auto-generated method stub
+		return reservationRepository.findById(id).orElse(null);
+	}
+
+	// @Override
+	// public List<Personne> personnesRecherch(String keyword) {
+	// // Rechercher les personnes dont le nom contient le mot-clé
+	// List<Personne> personnes = personneRepository.findByNomContains(keyword);
+
+	// // Collecter les résultats filtrés
+	// List<Personne> personnesFiltrees = personnes.stream()
+	// // Filtrez les personnes dont le nom contient le mot-clé (ignorez la casse)
+	// .filter(personne ->
+	// personne.getNom().toLowerCase().contains(keyword.toLowerCase()))
+	// // Collectez les résultats filtrés dans une nouvelle liste
+	// .collect(Collectors.toList());
+
+	// // Retourner la liste des personnes filtrées
+	// return personnesFiltrees;
+	// }
+
+	@Override
+	public List<Personne> personnesRecherch(String keyword) {
+
+		List<Personne> personnes = personneRepository.findByNomContains(keyword);
+
+		return personnes;
 	}
 
 }
