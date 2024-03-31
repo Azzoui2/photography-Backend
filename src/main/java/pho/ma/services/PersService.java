@@ -30,6 +30,7 @@ public interface PersService {
 
 	Reservation findById(Long id);
 
-	List<Personne> personnesRecherch(String keyword);
+	List<Client> personnesRecherch(String keyword);
 
+	boolean checkIfEmailExists(String email);
 }

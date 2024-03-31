@@ -39,7 +39,7 @@ public class PhotographyBackendApplication {
       // reservationRepository.deleteById(2L);
 
       // Création et enregistrement des spécialités
-      Stream.of("Mariage", "reportage", "événementielle").forEach(name -> {
+      Stream.of("Med", "Karim", "Hakim").forEach(name -> {
 
         Specialites specialites = new Specialites();
         specialites.setNom(name);

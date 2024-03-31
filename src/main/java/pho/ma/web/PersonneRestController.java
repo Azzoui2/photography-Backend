@@ -2,6 +2,7 @@ package pho.ma.web;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,12 +24,13 @@ import pho.ma.entities.Reservation;
 import pho.ma.entities.Specialites;
 import pho.ma.repositories.PersonneRepository;
 import pho.ma.services.PersService;
+import pho.ma.services.PersServiceImp;
 import pho.ma.services.PersonneService;
 
 @RestController
 @AllArgsConstructor
 @Slf4j
-// @CrossOrigin(origins = "http://localhost:53588")
+// @CrossOrigin(origins = "http://localhost:4200")
 
 @CrossOrigin("*") // // Autorise toutes les origines
 public class PersonneRestController {
@@ -41,12 +43,13 @@ public class PersonneRestController {
 	}
 
 	@GetMapping("/personnes/recherch")
-	public List<Personne> personnesRecherch(@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+	public List<Client> personnesRecherch(@RequestParam(name = "keyword", defaultValue = "") String keyword) {
 		return persService.personnesRecherch(keyword);
 	}
 
 	@GetMapping("/reservation")
 	public List<Reservation> reservations() {
+		System.out.println("333333333333333333");
 		return persService.ListReservation();
 	}
 
@@ -85,5 +88,14 @@ public class PersonneRestController {
 		persService.saveReservation(reservation);
 		return ResponseEntity.ok().build();
 
+	}
+
+	// Endpoint pour vérifier si l'email existe déjà
+
+	@GetMapping("personnes/check-email/{email}")
+	public ResponseEntity<Boolean> checkIfEmailExists(@PathVariable String email) {
+		boolean exists = persService.checkIfEmailExists(email);
+		System.out.println(exists);
+		return ResponseEntity.ok(exists);
 	}
 }

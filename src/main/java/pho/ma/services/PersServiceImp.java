@@ -2,9 +2,11 @@ package pho.ma.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,7 @@ import pho.ma.repositories.SpecialitesRepository;
 @Transactional
 @AllArgsConstructor
 @Slf4j
+
 public class PersServiceImp implements PersService {
 
 	private PersonneRepository personneRepository;
@@ -108,29 +111,41 @@ public class PersServiceImp implements PersService {
 		return reservationRepository.findById(id).orElse(null);
 	}
 
+	@Override
+	public List<Client> personnesRecherch(String keyword) {
+		// Rechercher les personnes dont le nom contient le mot-clé
+		List<Client> personnes = personneRepository.findByNomContains(keyword);
+
+		// Collecter les résultats filtrés
+		List<Client> personnesFiltrees = personnes.stream()
+				// Filtrez les personnes dont le nom contient le mot-clé (ignorez la casse)
+				.filter(personne -> personne.getNom().toLowerCase().contains(keyword.toLowerCase()))
+				// Collectez les résultats filtrés dans une nouvelle liste
+				.collect(Collectors.toList());
+
+		// Retourner la liste des personnes filtrées
+		return personnesFiltrees;
+	}
+
 	// @Override
 	// public List<Personne> personnesRecherch(String keyword) {
-	// // Rechercher les personnes dont le nom contient le mot-clé
+
 	// List<Personne> personnes = personneRepository.findByNomContains(keyword);
 
-	// // Collecter les résultats filtrés
-	// List<Personne> personnesFiltrees = personnes.stream()
-	// // Filtrez les personnes dont le nom contient le mot-clé (ignorez la casse)
-	// .filter(personne ->
-	// personne.getNom().toLowerCase().contains(keyword.toLowerCase()))
-	// // Collectez les résultats filtrés dans une nouvelle liste
-	// .collect(Collectors.toList());
-
-	// // Retourner la liste des personnes filtrées
-	// return personnesFiltrees;
+	// return personnes;
+	// }
+	// @Override
+	// public boolean checkIfEmailExists(String email) {
+	// log.info("Sauvgarder nouvelle email");
+	// Optional<Client> personneOptional = PersonneRepository.findByEmail(email);
+	// return personneOptional.isPresent(); // Renvoie vrai si l'email existe déjà,
+	// faux sinon
 	// }
 
 	@Override
-	public List<Personne> personnesRecherch(String keyword) {
-
-		List<Personne> personnes = personneRepository.findByNomContains(keyword);
-
-		return personnes;
+	public boolean checkIfEmailExists(String email) {
+		Optional<Client> client = personneRepository.findByEmail(email);
+		return client.isPresent();
 	}
 
 }
