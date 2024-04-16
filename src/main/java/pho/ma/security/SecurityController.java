@@ -26,30 +26,31 @@
 // private AuthenticationManager authenticationManager;
 // @Autowired
 // private JwtEncoder jwtEncoder;
+
 // @GetMapping("/profile")
-// public Authentication authentication(Authentication authentication){
+// public Authentication authentication(Authentication authentication) {
 
 // return authentication;
 // }
 
 // @GetMapping("/login")
-// public Map<String,String> login(String username,String password){
-// Authentication authentication = authenticationManager.authenticate(new
-// UsernamePasswordAuthenticationToken(username,password));
+// public Map<String, String> login(String username, String password) {
+// Authentication authentication = authenticationManager
+// .authenticate(new UsernamePasswordAuthenticationToken(username, password));
 // Instant instant = Instant.now();
 // String scope =
-// authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining("
-// "));
-// JwtClaimsSet
-// jwtClaimsSet=JwtClaimsSet.builder().issuedAt(instant).expiresAt(instant.plus(10,
+// authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+// .collect(Collectors.joining(""));
+// JwtClaimsSet jwtClaimsSet =
+// JwtClaimsSet.builder().issuedAt(instant).expiresAt(instant.plus(10,
 // ChronoUnit.MINUTES))
-// .subject(username).claim("scope",scope)
+// .subject(username).claim("scope", scope)
 // .build();
 
-// JwtEncoderParameters
-// jwtEncoderParameters=JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS512).build(),jwtClaimsSet);
+// JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters
+// .from(JwsHeader.with(MacAlgorithm.HS512).build(), jwtClaimsSet);
 // String jwt = jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
 
-// return Map.of("acces-token",jwt);
+// return Map.of("acces-token", jwt);
 // }
 // }
